@@ -1,28 +1,21 @@
-// JS for Single product detail
+const select = document.getElementsByClassName('selector');
+const products = document.getElementsByClassName('.col-4');
+const container = document.getElementsByClassName('row');
 
+select.addEventListener('change', (e) => {
+    const category = e.target.value;
+    const filtered = [];
 
-        var ProductImg = document.getElementById("product-img");//larger image
-        var SmallImg = document.getElementsByClassName("small-img");//it returns list of 4 images having index 0,1,2,3 as we have 4 images with class name "small0-img" 
-
-        SmallImg[0].onclick = function()//when user click on first image or images at 0 index, it will display as ProdcutImg.src replace with clicked or SmallImg[0], so we get smallimg[0] in bigger form, similarly when click on smallimg[1], it will display in bigger picture and so on 
-        {
-            ProductImg.src = SmallImg[0].src;   
+    products.forEach((product) => {
+        product.style.display = 'none';
+        if (category === 'default' || product.id === category) {
+            filtered.push(product);
         }
+    });
+    container.innerHTML = '';
 
-        SmallImg[1].onclick = function()
-        {
-            ProductImg.src = SmallImg[1].src;   
-        }
-
-        SmallImg[2].onclick = function()
-        {
-            ProductImg.src = SmallImg[2].src;   
-        }
-
-        SmallImg[3].onclick = function()
-        {
-            ProductImg.src = SmallImg[3].src;   
-        }
-
-        
- 
+    filtered.forEach((product) => {
+        product.style.display = 'block';
+        container.appendChild(product);
+    });
+});
