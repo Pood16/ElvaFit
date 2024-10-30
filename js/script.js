@@ -1,21 +1,26 @@
-const select = document.getElementsByClassName('selector');
-const products = document.getElementsByClassName('.col-4');
-const container = document.getElementsByClassName('row');
+document.addEventListener("DOMContentLoaded",function(){
+    const categorySelector = document.getElementById('selector');
+    const priceSelector = document.getElementById('price-range');
+    const updateRangeValue = document.getElementById('price-bar-value');
 
-select.addEventListener('change', (e) => {
-    const category = e.target.value;
-    const filtered = [];
+    priceSelector.addEventListener('input',function(){
 
-    products.forEach((product) => {
-        product.style.display = 'none';
-        if (category === 'default' || product.id === category) {
-            filtered.push(product);
-        }
+        updateRangeValue.textContent = priceSelector.value ;
+        listedProducts();
     });
-    container.innerHTML = '';
+    categorySelector.addEventListener('change',listedProducts);
+    function listedProducts() {
+        const cat = categorySelector.value;
+        const rang = parseInt(priceSelector.value);
 
-    filtered.forEach((product) => {
-        product.style.display = 'block';
-        container.appendChild(product);
-    });
+        document.querySelectorAll('.col-4').forEach(function(product){
+          const product_price =   product.getAttribute("data-price");
+          const product_cat =   product.getAttribute("data-category");
+            if((cat === "default" || cat === product_cat) && product_price <= rang ){
+                product.style.display="block";
+            }else{
+                product.style.display="none";
+            }
+        });
+    }
 });

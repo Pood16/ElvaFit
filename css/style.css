@@ -136,6 +136,8 @@ p{
     left: 50%;/*50% from l.H.S*/
     transform: translateX(-50%);
 }
+/* made by me */
+
 /*for products title*/
 h4{
     color: #555;
@@ -341,6 +343,7 @@ select:focus{
     color: #ffff;
 }
 /*single product details*/
+
 .single-product{
     margin-top: 80px;
 }
@@ -392,7 +395,7 @@ input:focus{
 .single-product .col-2 h1{
     margin-left: 0px;
 }
-/*Cart Items*/
+/*Cart Items*/  
 .cart-page{
     margin: 80px auto;
 }
@@ -403,6 +406,7 @@ table{
 .cart-info{
     display: flex;
     flex-wrap: wrap;
+    /* border: 1px solid red; */
 }
 th{
     text-align: left;
@@ -413,6 +417,7 @@ th{
 }
 td{
     padding: 10px 5px;
+  
 }
 td input{
     width: 40px;
@@ -421,7 +426,7 @@ td input{
 }
 td a{
     color: #ff523b;
-    ffont-size: 12px;
+    font-size: 12px;
 }
 td img{
     width: 80px;
@@ -432,6 +437,10 @@ td small{
     padding-left: 0px;
     margin-left: 0px;
 }
+/* td .pro-det {
+    border: 1px solid green;
+    width: 200px;
+} */
 
 .total-price{
     display: flex;
