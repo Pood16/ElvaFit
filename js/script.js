@@ -1,4 +1,17 @@
+
+
 document.addEventListener("DOMContentLoaded",function(){
+
+
+    
+
+
+
+
+
+
+
+    // Partie de filtrage
     const categorySelector = document.getElementById('selector');
     const priceSelector = document.getElementById('price-range');
     const updateRangeValue = document.getElementById('price-bar-value');
