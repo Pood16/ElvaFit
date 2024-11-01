@@ -159,19 +159,21 @@ function totalPrice(item){
 
 }
 
-function displayIncart(item){
+function displayIncart(item) {
     let cartItems = localStorage.getItem('itemsIncart');
     cartItems = JSON.parse(cartItems);
     let cartContainer = document.querySelector(".cart-page");
     let cartCost = localStorage.getItem("totalCost");
-    // console.log(cartCost);
-    // cartContainer.innerHTML = '';
-    // for (let i = 0; i<products.length; i++){}
     
-    if (cartItems && cartContainer){
+    if (cartItems && cartContainer) {
         cartContainer.innerHTML = '';
-        Object.values(cartItems).map( item => {
-            
+        //array of products in cart
+        let itemsArray = [];
+        for (let key in cartItems) {
+            itemsArray.push(cartItems[key]);
+        }
+        for (let i = 0; i < itemsArray.length; i++) {
+            let item = itemsArray[i];
             cartContainer.innerHTML += `
             <table>
                     <tr>
@@ -194,34 +196,29 @@ function displayIncart(item){
                         <td>$${item.price * item.inCart}</td>
                     </tr>
             </table>
-             `
-           
-            }); 
-             cartContainer.innerHTML += 
-            `
-            <div class="total-price">
-            <table>
-                <tr>
-                    <td>Subtotal</td>
-                    <td>$${cartCost},00</td>
-                </tr>
-                <tr>
-                    <td>Tax</td>
-                    <td>$${cartCost},00</td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td>$${cartCost},00</td>
-                </tr>
-            </table>
-        </div>
-            `
-            
-       
+            `;
+        }
         
+        // total cart
+        cartContainer.innerHTML += `
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>$${cartCost},00</td>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td>$${cartCost},00</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>$${cartCost},00</td>
+                    </tr>
+                </table>
+            </div>
+        `;
     }
-    
-
 }
 cartCountLouding();
 displayIncart()
