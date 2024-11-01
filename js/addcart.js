@@ -3,6 +3,7 @@
 
 // grab all add to cart buttons to apply an eventListner
 let carts = document.querySelectorAll('.add-product-cart-btn');
+
 let products = [
     {
         name: 'Red Printed T-shirt',
@@ -81,16 +82,21 @@ for (let i =0; i<carts.length; i++){
     carts[i].addEventListener('click', ()=> {
         cartNumbers(products[i]);  
         totalPrice(products[i]);
-        totalInMenu(products[i]);
+        totalInMenu(products[i]);   
     })
 }
         
 function cartCountLouding(){
     let productNumbers = localStorage.getItem('cartNumbers');
     let totalInMenuBar = localStorage.getItem('totalCost');
+    let cartContainer = document.querySelector(".cart-page");
+    
     if (productNumbers) {
         document.querySelector('.menu-bar span').textContent = productNumbers;
         document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;    
+    }
+    else {
+        cartContainer.innerHTML = '';
     }
 }
 function totalInMenu(item){
@@ -159,47 +165,56 @@ function totalPrice(item){
 
 }
 
+
 function displayIncart(item) {
     let cartItems = localStorage.getItem('itemsIncart');
     cartItems = JSON.parse(cartItems);
     let cartContainer = document.querySelector(".cart-page");
     let cartCost = localStorage.getItem("totalCost");
     
+    let itemsArray = [];
+    for (let key in cartItems) {
+        itemsArray.push(cartItems[key]);
+    }       
     if (cartItems && cartContainer) {
         cartContainer.innerHTML = '';
-        //array of products in cart
-        let itemsArray = [];
-        for (let key in cartItems) {
-            itemsArray.push(cartItems[key]);
-        }
-        for (let i = 0; i < itemsArray.length; i++) {
-            let item = itemsArray[i];
-            cartContainer.innerHTML += `
-            <table>
+        cartContainer.innerHTML += `
+                <table>
                     <tr>
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Subtotal</th>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="cart-info">
-                                <img src="./images/${item.tag}.jpg">
-                                <div class="pro-det">
-                                    <p>${item.name}</p>
-                                    <small>Price : $${item.price}</small>
-                                    <a href="#" class="remove-btn">remove</a>
+                </table>
+                `
+            
+        for (let i = 0; i < itemsArray.length; i++) {
+            let item = itemsArray[i];
+            
+            cartContainer.innerHTML += `
+            
+                <table>
+                    
+                        <tr>
+                            <td>
+                                <div class="cart-info">
+                                    <img src="./images/${item.tag}.jpg">
+                                    <div class="pro-det">
+                                        <p>${item.name}</p>
+                                        <small>Price : $${item.price}</small>
+                                        <a href="#" class="remove-btn">remove</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td><input type="number" name="" id="" value="${item.inCart}"></td>
-                        <td>$${item.price * item.inCart}</td>
-                    </tr>
-            </table>
+                            </td>
+                            <td><input type="number" name="" id="" value="${item.inCart}"></td>
+                            <td>$${item.price * item.inCart}</td>
+                        </tr>
+                </table>
+        
             `;
         }
         
-        // total cart
+        
         cartContainer.innerHTML += `
             <div class="total-price">
                 <table>
@@ -219,6 +234,12 @@ function displayIncart(item) {
             </div>
         `;
     }
+
+
+    
 }
+// remove
+
+
 cartCountLouding();
 displayIncart()

@@ -455,6 +455,7 @@ th{
     background: #ff523b;
     font-weight: normal;
 }
+
 td{
     padding: 10px 5px;
   
@@ -463,6 +464,7 @@ td input{
     width: 40px;
     height: 30px;
     padding: 5px;
+    text-align: end;
 }
 td a{
     color: #ff523b;
@@ -497,7 +499,7 @@ td:last-child{
 th:last-child{
     text-align: right;
 }
-/*account page*/
+/*account page*/            
 .account-page{
     padding: 50px 0;
     background: radial-gradient(#fff, #ffd6d6);
