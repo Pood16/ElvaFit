@@ -1,7 +1,4 @@
 
-
-
-// grab all add to cart buttons to apply an eventListner
 let carts = document.querySelectorAll('.add-product-cart-btn');
 
 let products = [
@@ -78,6 +75,7 @@ let products = [
         tag: 'product-12'
     },
 ]
+
 for (let i =0; i<carts.length; i++){
     carts[i].addEventListener('click', ()=> {
         cartNumbers(products[i]);  
@@ -85,86 +83,35 @@ for (let i =0; i<carts.length; i++){
         totalInMenu(products[i]);   
     })
 }
-        
-function cartCountLouding(){
-    let productNumbers = localStorage.getItem('cartNumbers');
-    let totalInMenuBar = localStorage.getItem('totalCost');
-    let cartContainer = document.querySelector(".cart-page");
-    
-    if (productNumbers) {
-        document.querySelector('.menu-bar span').textContent = productNumbers;
-        document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;    
-    }
-    else {
-        cartContainer.innerHTML = '';
-    }
-}
-function totalInMenu(item){
-    let totalInMenuBar = localStorage.getItem('totalCost');
-    totalInMenuBar = parseInt(totalInMenuBar);
-    if (totalInMenuBar){
-        document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;
-    }
-}
-function cartNumbers(item){
-    let productNumbers = localStorage.getItem('cartNumbers');
-    
-    productNumbers = parseInt(productNumbers);
-    
-    if (productNumbers){
-        localStorage.setItem('cartNumbers', productNumbers + 1);
-        document.querySelector('.menu-bar span').textContent = productNumbers + 1;
-        
-    }else {
-        localStorage.setItem('cartNumbers', 1);
-        document.querySelector('.menu-bar span').textContent = 1;
-    }
-    setItems(item);
-}
 
-function setItems(item){
+// remove from cart 
+function removeFromCart(tag) {
     let cartItems = localStorage.getItem('itemsIncart');
-    cartItems = JSON.parse(cartItems);
-    // console.log('the clicked item is : ', cartItems);
-    if (cartItems != null){
-        if (cartItems[item.tag] == undefined){
-            cartItems = {
-                ...cartItems,
-                [item.tag] : item
-            }
-        }
-        cartItems[item.tag].inCart += 1;
-    }else{
-        item.inCart = 1;
-        cartItems ={
-            [item.tag]: item,
-        }
-    }
-
-    // console.log(item);
-    // faced issue when I pass my object as a js object so one of the solutions was to pass it as a JSON object
-    localStorage.setItem("itemsIncart", JSON.stringify(cartItems));
-}
-
-function totalPrice(item){
-    // console.log("lets check the product price : ", item.price);
-    let cartCost = localStorage.getItem('totalCost');
-    let totalInMenuBar = localStorage.getItem('totalCost');
-    // document.querySelector('').textContent = cartCost;
-  
-    document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;
+    let cartNumbers = localStorage.getItem('cartNumbers');
+    let totalCost = localStorage.getItem('totalCost');
     
-    // console.log(localStorage.getItem('totalCost'));
-    if (cartCost != null){
-        cartCost = parseInt(cartCost);
-        localStorage.setItem("totalCost", cartCost + item.price);
-        
-    }else{
-        localStorage.setItem("totalCost", item.price);
+    cartItems = JSON.parse(cartItems);
+
+    console.log(cartItems);
+    console.log(cartItems[tag]);
+    
+    cartNumbers = parseInt(cartNumbers);
+    totalCost = parseInt(totalCost);
+
+    if (cartItems && cartItems[tag]) {
+        let itemPrice = cartItems[tag].price * cartItems[tag].inCart;
+        totalCost -= itemPrice;
+        cartNumbers -= cartItems[tag].inCart;
+        delete cartItems[tag];
+        // local storage new
+        localStorage.setItem('itemsIncart', JSON.stringify(cartItems));
+        localStorage.setItem('cartNumbers', cartNumbers);
+        localStorage.setItem('totalCost', totalCost);
+        document.querySelector('.menu-bar span').textContent = cartNumbers;
+        document.querySelector('ul .total-in-bar-menu').textContent = totalCost;
+        displayIncart();
     }
-
 }
-
 
 function displayIncart(item) {
     let cartItems = localStorage.getItem('itemsIncart');
@@ -202,7 +149,7 @@ function displayIncart(item) {
                                     <div class="pro-det">
                                         <p>${item.name}</p>
                                         <small>Price : $${item.price}</small>
-                                        <a href="#" class="remove-btn">remove</a>
+                                        <a href="#" class="remove-btn" data-tag="${item.tag}">remove</a>
                                     </div>
                                 </div>
                             </td>
@@ -233,13 +180,94 @@ function displayIncart(item) {
                 </table>
             </div>
         `;
+
+        // remove events
+        let removeButtons = document.querySelectorAll('.remove-btn');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                let tag = button.getAttribute('data-tag');
+                removeFromCart(tag);
+            });
+        });
+    }
+}
+
+
+function cartCountLouding(){
+    let productNumbers = localStorage.getItem('cartNumbers');
+    let totalInMenuBar = localStorage.getItem('totalCost');
+    let cartContainer = document.querySelector(".cart-page");
+    
+    if (productNumbers) {
+        document.querySelector('.menu-bar span').textContent = productNumbers;
+        document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;    
+    }
+    else {
+        cartContainer.innerHTML = '';
+    }
+}
+
+function totalInMenu(item){
+    let totalInMenuBar = localStorage.getItem('totalCost');
+    totalInMenuBar = parseInt(totalInMenuBar);
+    if (totalInMenuBar){
+        document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;
+    }
+}
+
+function cartNumbers(item){
+    let productNumbers = localStorage.getItem('cartNumbers');
+    
+    productNumbers = parseInt(productNumbers);
+    
+    if (productNumbers){
+        localStorage.setItem('cartNumbers', productNumbers + 1);
+        document.querySelector('.menu-bar span').textContent = productNumbers + 1;
+        
+    }else {
+        localStorage.setItem('cartNumbers', 1);
+        document.querySelector('.menu-bar span').textContent = 1;
+    }
+    setItems(item);
+}
+
+function setItems(item){
+    let cartItems = localStorage.getItem('itemsIncart');
+    cartItems = JSON.parse(cartItems);
+    
+    if (cartItems != null){
+        if (cartItems[item.tag] == undefined){
+            cartItems = {
+                ...cartItems,
+                [item.tag] : item
+            }
+        }
+        cartItems[item.tag].inCart += 1;
+    }else{
+        item.inCart = 1;
+        cartItems ={
+            [item.tag]: item,
+        }
     }
 
-
-    
+    localStorage.setItem("itemsIncart", JSON.stringify(cartItems));
 }
-// remove
 
+function totalPrice(item){
+    let cartCost = localStorage.getItem('totalCost');
+    let totalInMenuBar = localStorage.getItem('totalCost');
+  
+    document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;
+    
+    if (cartCost != null){
+        cartCost = parseInt(cartCost);
+        localStorage.setItem("totalCost", cartCost + item.price);
+        
+    }else{
+        localStorage.setItem("totalCost", item.price);
+    }
+}
 
 cartCountLouding();
-displayIncart()
+displayIncart();
