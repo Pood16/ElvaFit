@@ -89,7 +89,7 @@ function cartCountLouding(){
     let totalInMenuBar = localStorage.getItem('totalCost');
     if (productNumbers) {
         document.querySelector('.menu-bar span').textContent = productNumbers;
-        document.querySelector('ul li').textContent = totalInMenuBar;
+        document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;
         
     }
 }
@@ -133,13 +133,16 @@ function setItems(item){
 function totalPrice(item){
     // console.log("lets check the product price : ", item.price);
     let cartCost = localStorage.getItem('totalCost');
+    let totalInMenuBar = localStorage.getItem('totalCost');
     // document.querySelector('').textContent = cartCost;
   
+    document.querySelector('ul .total-in-bar-menu').textContent = totalInMenuBar;
     
     // console.log(localStorage.getItem('totalCost'));
     if (cartCost != null){
         cartCost = parseInt(cartCost);
         localStorage.setItem("totalCost", cartCost + item.price);
+        
     }else{
         localStorage.setItem("totalCost", item.price);
     }
@@ -156,11 +159,16 @@ function displayIncart(item){
     // for (let i = 0; i<products.length; i++){}
     
     if (cartItems && cartContainer){
-        // cartContainer.innerHTML = '';
+        cartContainer.innerHTML = '';
         Object.values(cartItems).map( item => {
             
             cartContainer.innerHTML += `
             <table>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
                     <tr>
                         <td>
                             <div class="cart-info">
