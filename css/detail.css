@@ -36,7 +36,7 @@
   #nav {
     position: sticky;
     top: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index: 122;
     background-color: rgb(7, 7, 7);
   }
@@ -95,17 +95,17 @@
     }
     
     header nav ul:nth-child(2){
-      background:rgba(0, 52, 82,.15);
-      color:var(--white);
-      display:block;
-      Width:auto;
-      height:auto;
-      text-align:left;
-      padding:30px 30px;
-      transition:all .5s;
-      position:absolute;
-      left:-162px;
-      top:92px;
+      background: black;
+      color: var(--white);
+      display: block;
+      Width: 100%;
+      /* height: auto; */
+      text-align: center;
+      padding: 30px 30px;
+      transition: all .5s;
+      position: absolute;
+      left: 0px;
+      top: 84px;
     }
     
     header nav ul:nth-child(2):after{
@@ -140,7 +140,7 @@
     }
     
     header nav ul:nth-child(3) li:nth-child(1){
-      margin-top:30px;
+      margin-top:5px;
     }
     
     header nav ul:nth-child(3) li:nth-child(5){

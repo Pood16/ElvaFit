@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--we have added this view port tag and set initial scale to 1 so that our side shoudl be adjustable according to different devices especially for mobile devices-->
+    <title>elevateFit | The #1 Ecommerce Website </title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/detail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!--poppins font from google fonts website then select popping select some types and then embed-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--link to connect to font awesome 4 to use different icons, just type font awesome 4 cdn and click on first link and copy the url and past it here with rel="stylesheet"-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!---- icon cdn link---->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/check.css">
+    <!--- owl carsoul ---->
+</head>
+
+<body>
+
+    <!--making header-->
+    <header>
+
+        <nav id="nav">
+
+            <img src="./images/logo-white.png" class="logo">
+
+            <ul class="menu-bar-side">
+                <li><a href="index.html" style=" all: unset;">Home</a></li>
+                <li><a href="Products.html" style=" all: unset;">Shope</a></li>
+                <li><a href="#" style=" all: unset;">about</a></li>
+                <li><a href="#" style=" all: unset;">contact us</a></li>
+            </ul>
+
+            <ul class="menu-bar">
+
+                <li class="total-in-bar-menu">$0.00</li>
+                <li><a href="cart.html"><i class='fas fa-shopping-cart'></i><span class="product-count">0</span></a></li>
+
+            </ul>
+
+            <i class="fa fa-bars" onclick="menutoggle()"></i>
+        </nav>
+
+
+      
+
+    </header>
+
+
+
+
+
+
+
+
+    <div class="container">
+        <h1 class="page-title">Product Order Form</h1>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label class="form-label required">First Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Last Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Company Name (Optional)</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Country</label>
+                            <input type="text" class="form-control" value="Morocco" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Street Address</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Apartment, suite, unit etc. (optional)</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Town / City</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">State / County</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Postcode / ZIP</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Phone</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label required">Email Address</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="order-summary">
+                    <div class="order-header">
+                        Your order
+                    </div>
+
+                    <div class="order-content">
+                        <table class="table">
+                            <tr>
+                                <td>Subtotal</td>
+                                <td class="text-right">$88.00</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                <td class="text-right free-shipping">Free shipping</td>
+                            </tr>
+                        </table>
+
+                        <div class="payment-options">
+                            <div class="form-check">
+                                <input type="radio" name="payment" class="form-check-input" required>
+                                <label class="form-check-label">Direct Bank Transfer</label>
+                                <p class="payment-description">
+                                    Make your payment directly into our bank account. Please use your Order ID as the payment reference. 
+                                    Your order will not be shipped until the funds have cleared in our account.
+                                </p>
+                            </div>
+
+                            <div class="form-check">
+                                <input type="radio" name="payment" class="form-check-input" required>
+                                <label class="form-check-label">Cash on Delivery</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input type="radio" name="payment" class="form-check-input" required>
+                                <label class="form-check-label">PayPal</label>
+                            </div>
+
+                            <button type="submit" class="btn-order">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+
+           
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and Ios mobile phone.</p>
+
+                  
+                    <div class="app-logo">
+                        <img src="./images/play-store.png">
+                        <img src="./images/app-store.png">
+                    </div>
+
+                </div>
+
+                <div class="footer-col-2">
+                    <img src="./images/logo-white.png">
+                    <p>Our purpose is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+
+                </div>
+            </div>
+            
+            <hr>
+            <a href="" class="copyright">Copyright 2024 - Made with ❤️ LorenzCipher</a>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        console.log('it worked');
+        let payCkeck = document.querySelector('.text-right');
+        payCkeck.innerHTML = "$"+localStorage.getItem('totalCost');
+    </script>
+    
+</body>
+</html>
