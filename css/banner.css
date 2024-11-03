@@ -56,7 +56,7 @@
   #nav {
     position: sticky;
     top: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index: 122;
     background-color: rgb(7, 7, 7);
   }
@@ -175,17 +175,17 @@
     }
     
     header nav ul:nth-child(2){
-      background:rgba(0, 52, 82,.15);
+      background: black;
       color:var(--white);
       display:block;
-      Width:auto;
+      Width:100%;
       height:auto;
-      text-align:left;
+      text-align:center;
       padding:30px 30px;
       transition:all .5s;
       position:absolute;
-      left:-162px;
-      top:92px;
+      left:1px;
+      top:85px;
     }
     
     header nav ul:nth-child(2):after{
@@ -202,16 +202,17 @@
     }
     
     header nav ul:nth-child(3){
-      background:rgba(0, 52, 82,.15);
-      color:var(--white);
-      display:block;
-      right:0;
-      top:92px;
-      Width:200px;
-      height:0px;
-      overflow:hidden;
-      text-align:center;
-      transition:all .5s;
+      background: rgba(0, 52, 82, .15);
+        color: var(--white);
+        display: block;
+        /* align-items: center; */
+        right: -17px;
+        top: 103px;
+        Width: 200px;
+        height: 0px;
+        /* overflow: hidden; */
+        text-align: center;
+        transition: all .5s;
     }
     
     

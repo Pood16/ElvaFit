@@ -26,6 +26,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <!--- owl carsoul ---->
 </head>
+<style>
+    @media(max-width: 850px){
+        .hidden{
+            display: none !important;
+        }
+    }
+</style>
 
 <body>
 
@@ -36,14 +43,14 @@
 
             <img src="./images/logo-white.png" class="logo">
 
-            <ul class="menu-bar-side">
+            <ul class="menu-bar-side hidden">
                 <li><a href="index.html" style=" all: unset;">Home</a></li>
                 <li><a href="Products.html" style=" all: unset;">Shope</a></li>
                 <li><a href="#" style=" all: unset;">about</a></li>
                 <li><a href="#" style=" all: unset;">contact us</a></li>
             </ul>
 
-            <ul class="menu-bar">
+            <ul class="menu-bar hidden">
 
                 <li class="total-in-bar-menu">$0.00</li>
                 <li><a href="cart.html"><i class='fas fa-shopping-cart'></i><span class="product-count">0</span></a></li>
@@ -477,6 +484,12 @@
 
     <!-----------------JS----------------------->
     <script src="js/addcart.js"></script>
+    <script>
+        document.querySelector(".fa-bars").addEventListener("click",()=>{
+        document.querySelector(".menu-bar-side").classList.toggle("hidden");
+        document.querySelector(".menu-bar").classList.toggle("hidden");
+        });
+    </script>
   
 
 
